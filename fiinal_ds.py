@@ -170,6 +170,44 @@ for i in poss2:
 
 # Q4 build any regressio model
 
+# simple linear regreassion
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+data = {
+    'Experience': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Salary': [45000, 50000, 60000, 65000, 70000, 80000, 85000, 90000, 95000, 100000]
+}
+
+df = pd.DataFrame(data)
+
+x = df[['Experience']]
+y = df['Salary']    
+
+model = LinearRegression()
+model.fit(x,y)
+
+x_test = np.array([[int(input("Enter your years of experience: "))]])
+y_pred = model.predict(x_test)
+
+print("Predicted salary:", y_pred[0])
+
+plt.scatter(x, y, color='blue', label='Training data')  
+plt.scatter(x_test, y_pred, color='red', label='Test data')         
+plt.plot(x, model.predict(x), color='green', label='Regression line')  
+
+
+plt.title('Experience vs Salary')
+plt.xlabel('Years of Experience')
+plt.ylabel('Salary')
+plt.legend()
+plt.show()
+
+# multi linear regression
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
